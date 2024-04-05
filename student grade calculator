@@ -1,1 +1,76 @@
+import java.util.Scanner;
 
+public class grades {
+
+    public static void main(String[] args) {
+
+        double sum = 0;
+        double average = 0;
+        int gradeCount = 0;
+        int highScore = 0;
+        int lowScore = 100;
+        int aCount = 0;
+        int bCount = 0;
+        int cCount = 0;
+        int dCount = 0;
+        int fCount = 0;
+        int grade = 0;
+
+        Scanner in = new Scanner(System.in);
+        System.out.println("Welcome to the Grade Calculator Program");
+        System.out.println("");
+        System.out.println("Please enter the student scores as integers between 0 and 100.");
+        System.out.println("Separate the scores with a space.");
+        System.out.println("Enter a negative number following the last student score.");
+        System.out.print("Enter the scores here: ");
+
+        while (in.hasNext()) {
+            grade = Integer.parseInt(in.next());
+            if (grade >= 0 && grade <= 100) {
+                sum += grade;
+                gradeCount++;
+
+                if (grade > highScore) {
+                    highScore = grade;
+                }
+
+                if (grade < lowScore) {
+                    lowScore = grade;
+                }
+
+                if (grade >= 80) {
+                    aCount++;
+                } else if (grade >= 70) {
+                    bCount++;
+                } else if (grade >= 60) {
+                    cCount++;
+                } else if (grade >= 50) {
+                    dCount++;
+                } else {
+                    fCount++;
+                }
+            } else if (grade < 0) {
+                break;
+            } else {
+                System.out.println("Invalid score. Please enter a valid score between 0 and 100.");
+                System.out.println("Enter the scores here: ");
+                in.nextLine(); // Consume the invalid input
+                continue;
+            }
+        }
+
+        average = sum / gradeCount;
+
+        System.out.println("");
+        System.out.println("The average score is: " + average);
+        System.out.println("The high score is: " + highScore);
+        System.out.println("The low score is: " + lowScore);
+        System.out.println("Number of A's: " + aCount);
+        System.out.println("Number of B's: " + bCount);
+        System.out.println("Number of C's: " + cCount);
+        System.out.println("Number of D's: " + dCount);
+        System.out.println("Number of F's: " + fCount);
+
+        in.close();
+    }
+}
